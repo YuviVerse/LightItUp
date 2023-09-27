@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -65,6 +64,7 @@ namespace LightItUp.Data
         public GameLevel gameLevelClean;
 
 		public GameObject auraParticles;
+        public MissileController missilePrefab;
 
         public GameObject ArrowToPrefab(ArrowType type)
         {

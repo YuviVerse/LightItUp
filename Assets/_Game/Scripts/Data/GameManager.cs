@@ -164,7 +164,7 @@ namespace LightItUp.Data
                 if (BoosterService.Instance.ShouldShowBoosterUnlockedPopup(GameData.PlayerData.selectedLevelIdx)) 
                 {
                     CanvasController.Open(CanvasController.Popups.BoosterUnlocked);
-                 } 
+                } 
                 else 
                 {
                     OpenPreLevelPopup();
@@ -363,6 +363,12 @@ namespace LightItUp.Data
             _paused = b;
 
             Time.timeScale = _paused ? 0 : 1;
+        }
+
+        public void ShotMissiles(int numberOfMissiles)
+        {
+            var blockList = currentLevel.blocks;
+            currentLevel.player.ShotMissiles(blockList, numberOfMissiles);
         }
     }
 }

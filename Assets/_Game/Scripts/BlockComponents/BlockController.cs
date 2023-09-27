@@ -1288,6 +1288,7 @@ namespace LightItUp.Game
             CheckForBlocks(collision.gameObject);
             CheckForPlayerDummy(collision.gameObject);
         }
+
         protected void CheckCollisionRelease(Collision2D collision)
         {
             CheckForBlocksRelease(collision.gameObject);
@@ -1357,6 +1358,11 @@ namespace LightItUp.Game
                 return true;
             }
             return false;
+        }
+        
+        public void OnMissileHit()
+        {
+            Collide();
         }
 
         #endregion

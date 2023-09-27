@@ -1234,5 +1234,57 @@ namespace LightItUp.Game
 		}
 
 
+		public void ShotMissiles(List<BlockController> blockList, int numberOfMissiles)
+		{
+			if (blockList == null || blockList.Count == 0 || numberOfMissiles <= 0)
+			{
+				return;
+			}
+			
+			List<BlockController> remainingBlocks = new List<BlockController>(blockList);
+			remainingBlocks.RemoveAll(block => block.IsLit);
+
+			for (int i = 0; i < numberOfMissiles; i++)
+			{
+				if (remainingBlocks.Count == 0)
+				{
+					break;
+				}
+				
+				var target = FindNearestBlock(remainingBlocks);
+
+				if (target != null)
+				{
+					var missilePrefab = PrefabAssets.Instance.missilePrefab;
+					var offSet = new Vector3(0f, 2f, 0);
+					MissileController missile = Instantiate(missilePrefab, transform.position + offSet, Quaternion.identity);
+					missile.SetTarget(target);
+					
+					var missileCol = missile.GetComponent<Collider2D>();
+					camFocus.AddTempTarget(missileCol, GameSettings.CameraFocus.missilesShotFocusDuration);
+					
+					remainingBlocks.Remove(target.GetComponent<BlockController>());
+				}
+			}
+		}
+		
+		private Transform FindNearestBlock(List<BlockController> blockList)
+		{
+			Transform nearestBlock = null;
+			float shortestDistance = Mathf.Infinity;
+
+			foreach (BlockController block in blockList)
+			{
+				float distance = Vector2.Distance(transform.position, block.transform.position);
+
+				if (distance < shortestDistance)
+				{
+					shortestDistance = distance;
+					nearestBlock = block.transform;
+				}
+			}
+
+			return nearestBlock;
+		}
     }
 }

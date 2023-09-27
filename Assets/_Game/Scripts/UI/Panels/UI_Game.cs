@@ -21,6 +21,7 @@ namespace LightItUp.UI
 		public GameObject progress;
 
 		public Button pauseButton;
+		public Button missilesButton;
 
 		void Awake()
 		{
@@ -104,6 +105,7 @@ namespace LightItUp.UI
 			}
 			levelName.GetComponent<Animator>().Play("ScaleOut");
 			levelNameBackdrop.GetComponent<Animator>().Play("FadeOut");
+			missilesButton.interactable = true;
 		}
 		public void HideHand()
 		{
@@ -203,6 +205,16 @@ namespace LightItUp.UI
 		
 			GameManager.Instance.TogglePause(true);
 			CanvasController.Open(CanvasController.Popups.Pause);
+		}
+
+		public void OnMissilesButtonClicked(int numberOfMissiles)
+		{
+			if (GameManager.Instance.currentLevel.player.state != PlayerController.State.Normal)
+			{
+				return;
+			}
+		
+			GameManager.Instance.ShotMissiles(numberOfMissiles);
 		}
 
 		private void OnApplicationPause(bool pauseStatus)
