@@ -1259,6 +1259,7 @@ namespace LightItUp.Game
 					var offSet = new Vector3(0f, 2f, 0);
 					MissileController missile = Instantiate(missilePrefab, transform.position + offSet, Quaternion.identity);
 					missile.SetTarget(target);
+					missile.transform.SetParent(_gameLevelRef.transform);
 					
 					var missileCol = missile.GetComponent<Collider2D>();
 					camFocus.AddTempTarget(missileCol, GameSettings.CameraFocus.missilesShotFocusDuration);

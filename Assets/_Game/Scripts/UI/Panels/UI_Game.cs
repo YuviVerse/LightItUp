@@ -146,6 +146,8 @@ namespace LightItUp.UI
 			{
 				a.gameObject.SetActive(false);
 			}
+			
+			missilesButton.interactable = false;
 			GameManager.Instance.playerStart -= HideHand;
 		}
 		public void ShowFinger(int side)
