@@ -115,7 +115,7 @@ namespace LightItUp.Data
             public float blockZoomBorder = 0;
             public float blockExplodePartsBorder = 1;
             public float blockExplodePartsFocusDuration = 3;
-            public float missilesShotFocusDuration = 3;
+            public float missilesShotFocusDuration = 5;
             public float blockExplodePartsFocusFadeDuration = 0.5f;
             public float wallBorder = 0;
             public float wallZoomBorder = 0;
